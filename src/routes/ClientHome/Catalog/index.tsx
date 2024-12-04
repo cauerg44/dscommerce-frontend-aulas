@@ -1,5 +1,4 @@
 import './styles.css'
-import productImgUrl from '../../../assets/img-github.jpg'
 import SearchBar from '../../../components/SearchBar'
 import CatalogCard from '../../../components/CatalogCard'
 import ButtonNextPage from '../../../components/ButtonNextPage'
