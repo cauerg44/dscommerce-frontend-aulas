@@ -13,9 +13,9 @@ export default function Catalog() {
 
     useEffect(() => {
         productService.findAll()
-        .then(response => {
-            setProducts(response.data.content)
-        })
+            .then(response => {
+                setProducts(response.data.content)
+            })
     }, [])
 
     return (

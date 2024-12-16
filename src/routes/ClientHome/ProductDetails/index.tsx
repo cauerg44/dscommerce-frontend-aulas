@@ -21,7 +21,7 @@ export default function ProductDetails() {
             .then(response => {
                 setProduct(response.data)
             })
-            .catch(error => {
+            .catch(() => {
                 navigate("/")
             })
     }, [])
@@ -30,7 +30,7 @@ export default function ProductDetails() {
         <main>
             <section id="product-details-section" className="dsc-container">
                 {
-                    product &&
+                    product && 
                     <ProductDetailsCard product={product} />
                 }
                 <div className="dsc-btn-page-container">

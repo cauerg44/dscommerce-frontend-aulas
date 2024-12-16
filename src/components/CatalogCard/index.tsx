@@ -22,6 +22,5 @@ export default function CatalogCard({ product }: Props) {
                 </div>
             </div>
         </Link>
-
     )
 }
