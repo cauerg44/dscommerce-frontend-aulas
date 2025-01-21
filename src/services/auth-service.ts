@@ -43,13 +43,14 @@ export function getAccessTokenPayload(): AccessTokenPayloadDTO | undefined {
         return token == null
             ? undefined
             : (jwtDecode(token) as AccessTokenPayloadDTO);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
         return undefined;
     }
 }
 
 export function isAuthenticated(): boolean {
-    let tokenPayload = getAccessTokenPayload();
+    const tokenPayload = getAccessTokenPayload();
     if (tokenPayload && tokenPayload.exp * 1000 > Date.now()) {
         return true
     }
@@ -62,16 +63,14 @@ export function hasAnyRoles(roles: RoleEnum[]): boolean {
     if (roles.length === 0) {
         return true;
     }
-
     const tokenPayload = getAccessTokenPayload();
-
     if (tokenPayload !== undefined) {
-        for (var i = 0; i < roles.length; i++) {
+        for (let i = 0; i < roles.length; i++) {
             if (tokenPayload.authorities.includes(roles[i])) {
                 return true;
             }
         }
-        // return roles.some(role => tokenData.authorities.includes(role));
+        //returnroles.some(role => tokenData.authorities.includes(role));
     }
     return false;
 }
