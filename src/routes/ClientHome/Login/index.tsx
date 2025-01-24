@@ -7,7 +7,7 @@ import { ContextToken } from '../../../utils/context-token'
 
 export default function Login() {
 
-    const { setContextTokenPayLoad } = useContext(ContextToken)
+    const { setContextTokenPayload } = useContext(ContextToken)
 
     const navigate = useNavigate()
 
@@ -22,7 +22,7 @@ export default function Login() {
         authService.loginRequest(formData)
             .then(response => {
                 authService.saveAccessToken(response.data.access_token)
-                setContextTokenPayLoad(authService.getAccessTokenPayload())
+                setContextTokenPayload(authService.getAccessTokenPayload())
                 navigate("/cart")
             })
             .catch(error => {
