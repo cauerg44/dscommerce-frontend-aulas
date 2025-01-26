@@ -1,10 +1,15 @@
 import './styles.css'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import * as forms from '../../../utils/forms'
-import { useState } from 'react';
+import * as productService from '../../../services/product-service'
+import { useEffect, useState } from 'react';
 import FormInput from '../../../components/FormInput';
 
 export default function ProductForm() {
+
+    const params = useParams()
+
+    const isEditing = params.productId !== "create"
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [formData, setFormData] = useState<any>({
@@ -30,6 +35,15 @@ export default function ProductForm() {
             placeholder: "Imagem",
         }
     })
+
+    useEffect(() => {
+        if (isEditing) {
+            productService.findById(Number(params.productId))
+                .then(response => {
+                    console.log(response.data)
+                })
+        }
+    }, [])
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function handleInputChange(event: any) {
