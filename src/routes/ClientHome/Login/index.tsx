@@ -1,7 +1,7 @@
 import './styles.css'
 import { useContext, useState } from 'react'
 import * as authService from '../../../services/auth-service'
-import * as froms from '../../../utils/forms'
+import * as forms from '../../../utils/forms'
 import { useNavigate } from 'react-router-dom'
 import { ContextToken } from '../../../utils/context-token'
 import FormInput from '../../../components/FormInput'
@@ -37,7 +37,8 @@ export default function Login() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function handleSubmit(event: any) {
         event.preventDefault()
-        authService.loginRequest({ username: formData.username.value, password: formData.password.value })
+        console.log(forms.toValues(formData))
+        authService.loginRequest(forms.toValues(formData))
             .then(response => {
                 authService.saveAccessToken(response.data.access_token)
                 setContextTokenPayload(authService.getAccessTokenPayload())
@@ -50,7 +51,7 @@ export default function Login() {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function handleInputChange(event: any) {
-        setFormData(froms.update(formData, event.target.name, event.target.value))
+        setFormData(forms.update(formData, event.target.name, event.target.value))
     }
 
     return (
