@@ -5,6 +5,7 @@ export default function FormSelect(props: any) {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {
+        className,
         validation,
         invalid = "false",
         dirty = "false",
@@ -17,11 +18,15 @@ export default function FormSelect(props: any) {
     }
 
     return (
-        <Select 
-        {...selectProps}
+        <div
+            className={className}
             data-invalid={invalid}
-            onBlur={handleBluer}
             data-dirty={dirty}
-        />
+        >
+            <Select
+                {...selectProps}
+                onBlur={handleBluer}
+            />
+        </div>
     )
 }
