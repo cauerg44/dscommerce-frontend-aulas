@@ -82,6 +82,7 @@ export function dirtyAndValidateAll(inputs: any) {
     return validateAll(toDirtyAll(inputs))
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function hasAnyInvalid(inputs: any) {
     for (let name in inputs) {
         if (inputs[name].dirty === "true" && inputs[name].invalid === "true") {
@@ -89,4 +90,15 @@ export function hasAnyInvalid(inputs: any) {
         }
     }
     return false
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function setBackendErros(inputs: any, erros: any[]) {
+    const newInputs = { ...inputs }
+    erros.forEach(item => {
+        newInputs[item.fieldName].message = item.message;
+        newInputs[item.fieldName].dirty = "true";
+        newInputs[item.fieldName].invalid = "true";
+    })
+    return newInputs
 }
